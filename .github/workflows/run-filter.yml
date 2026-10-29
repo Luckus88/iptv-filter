@@ -1,0 +1,34 @@
+name: Auto IPTV Filter
+on:
+  schedule:
+    # 每天北京时间早上 8点自动执行（UTC是0点）
+    - cron: '0 0 * * *'
+  workflow_dispatch: # 支持手动点按钮立刻运行
+
+jobs:
+  filter:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Download original m3u source
+        run: |
+          # 这里替换成你自己的m3u源地址！
+          curl -L "https://wget.la/https://raw.githubusercontent.com/Jsnzkpg/Jsnzkpg/Jsnzkpg/Jsnzkpg1.m3u" -o input.m3u
+
+      - name: Run filter script
+        run: python filter.py input.m3u output.m3u
+
+      - name: Commit & push output.m3u
+        run: |
+          git config --global user.name "${{ shturl.cc/i6 }}"
+          git config --global user.email "${{ shturl.cc/i6 }}@users.noreply.github.com"
+          git add output.m3u
+          git commit -m "auto update filtered iptv source" || echo "no changes"
+          git push
