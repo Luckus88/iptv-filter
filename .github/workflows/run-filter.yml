@@ -18,7 +18,7 @@ jobs:
 
       - name: Download original m3u source
         run: |
-          curl -L "https://wget.la/https://raw.githubusercontent.com/Jsnzkpg/Jsnzkpg/Jsnzkpg/Jsnzkpg1.m3u" -o input.m3u
+          curl -L "https://iptv.445569.xyz/live.m3u" -o input.m3u
 
       - name: Run filter script
         run: python filter.py input.m3u output.m3u
