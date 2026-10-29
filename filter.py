@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# iptv-filter：m3u IPTV频道过滤工具
+# iptv-filter: m3u IPTV频道过滤工具
 import sys
 
 def filter_m3u(input_file, output_file, keep_keywords):
@@ -19,13 +19,14 @@ def filter_m3u(input_file, output_file, keep_keywords):
             keep_next = False
         elif '#EXTM3U' in line:
             result.append(line)
+
     with open(output_file, 'w', encoding='utf-8') as f:
         f.writelines(result)
 
 if __name__ == "__main__":
-    # =========在这里修改你想要保留的频道关键词=========
-    KEEP_KEYWORDS = []
+    # =========在这里修改你想要保留的频道关键词========
+    KEEP_KEYWORDS = [""]
     if len(sys.argv) < 3:
-        print("使用方法：python filter.py input.m3u output.m3u")
+        print("使用方法: python filter.py input.m3u output.m3u")
         sys.exit(1)
     filter_m3u(sys.argv[1], sys.argv[2], KEEP_KEYWORDS)
