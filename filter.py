@@ -24,7 +24,7 @@ def filter_m3u(input_file, output_file, keep_keywords):
 
 if __name__ == "__main__":
     # =========在这里修改你想要保留的频道关键词=========
-    KEEP_KEYWORDS = ["CCTV", "湖南卫视", "浙江卫视", "江苏卫视"]
+    KEEP_KEYWORDS = []
     if len(sys.argv) < 3:
         print("使用方法：python filter.py input.m3u output.m3u")
         sys.exit(1)
